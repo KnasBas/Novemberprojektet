@@ -4,14 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Novembetprojektet
+namespace Novemberprojektet
 {
-    class Program
+    class Fighting
     {
-        static void Main(string[] args)
-        {
-            //Programmerings projekt
+        protected int stance = 0;
 
+        public int GetStance(int amount)
+        {
+
+
+
+
+            return stance;
         }
+
     }
 }
