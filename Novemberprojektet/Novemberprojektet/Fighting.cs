@@ -12,6 +12,8 @@ namespace Novemberprojektet
 
         protected float hp = 0;
 
+        protected int weapon = 0;
+
         public int GetStance(int amount)
         {
             if(amount == 1)
@@ -22,7 +24,6 @@ namespace Novemberprojektet
             {
                 stance = 2;
             }
-
             return stance;
         }
 
@@ -32,7 +33,11 @@ namespace Novemberprojektet
 
             int damage = 0;
 
-            if (stance == 1) //Offensiv
+            if (stance == 1 && weapon == 2) //Offensiv
+            {
+                damage = generator.Next(10, 20); //5 - 15
+            }
+            else if (stance == 1 && weapon != 2)
             {
                 damage = generator.Next(5, 15); //5 - 15
             }

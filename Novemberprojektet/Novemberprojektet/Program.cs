@@ -12,7 +12,9 @@ namespace Novemberprojektet
         {
             //Novembet projekt, GameState och fightersim
 
+            Player p1 = new Player();
 
+            p1.SetPlayer();
 
         }
     }
