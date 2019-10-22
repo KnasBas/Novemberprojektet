@@ -8,20 +8,52 @@ namespace Novemberprojektet
 {
     class Fighting
     {
+        public string name = "";
+
         protected int stance = 0;
 
         protected float hp = 0;
 
         protected int weapon = 0;
 
-        public int GetStance(int amount)
+        protected bool PlayerState = true;
+        
+        public void SetStats()
         {
-            if(amount == 1)
+            Random generator = new Random();
+
+            hp = generator.Next(150, 200);
+
+            weapon = generator.Next(3); // 1/3 chans, om generatorn rullar 2 så kommer spelaren göra mer damage
+        }
+        public virtual int GetStance()
+        {
+            Console.WriteLine("Välj stance Offensiv (1) eller Deffensiv (2)");
+            Console.Write("Ditt val: ");
+
+            string answer = Console.ReadLine();
+
+            int i = 0;
+
+            bool checkAnswer = int.TryParse(answer, out i);
+
+            while (checkAnswer == false && i != 1 && i != 2)
             {
+                Console.WriteLine("Försök igen (1/2)");
+                answer = Console.ReadLine();
+                checkAnswer = int.TryParse(answer, out i);
+            }
+
+            int amount = i;
+
+            if (amount == 1)
+            {
+                Console.WriteLine("{Offensiv}");
                 stance = 1;
             }
             else
             {
+                Console.WriteLine("{Deffensiv}");
                 stance = 2;
             }
             return stance;
@@ -45,6 +77,8 @@ namespace Novemberprojektet
             {
                 damage = generator.Next(1, 9); //1 - 9
             }
+
+            Console.WriteLine(name + " gör skada för " + damage);
           
             return damage;
         }
@@ -65,6 +99,28 @@ namespace Novemberprojektet
             }
 
             hp = hp - amount;
+            if(hp < 0)
+            {
+                hp = 0;
+            }
+        }
+
+        public float GetHp() 
+        {
+
+            Console.WriteLine(name + " har nu " + hp + "hp kvar.");
+
+            return hp;
+        }
+
+        public bool isAlive()
+        {
+            if(hp == 0)
+            {
+                PlayerState = false;
+            }
+
+            return PlayerState;
         }
 
     }
