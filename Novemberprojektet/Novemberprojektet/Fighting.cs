@@ -33,28 +33,22 @@ namespace Novemberprojektet
 
             string answer = Console.ReadLine();
 
-            int i = 0;
+            bool checkAnswer = int.TryParse(answer, out stance);
 
-            bool checkAnswer = int.TryParse(answer, out i);
-
-            while (checkAnswer == false && i != 1 && i != 2)
+            while (!checkAnswer || stance != 1 && stance != 2)
             {
-                Console.WriteLine("Försök igen (1/2)");
+                Console.WriteLine("Försök igen (1 eller 2)");
                 answer = Console.ReadLine();
-                checkAnswer = int.TryParse(answer, out i);
+                checkAnswer = int.TryParse(answer, out stance);
             }
 
-            int amount = i;
-
-            if (amount == 1)
+            if (stance == 1)
             {
                 Console.WriteLine("{Offensiv}");
-                stance = 1;
             }
             else
             {
                 Console.WriteLine("{Deffensiv}");
-                stance = 2;
             }
             return stance;
         }
@@ -99,17 +93,17 @@ namespace Novemberprojektet
             }
 
             hp = hp - amount;
+
             if(hp < 0)
             {
                 hp = 0;
             }
         }
-
         public float GetHp() 
         {
-
             Console.WriteLine(name + " har nu " + hp + "hp kvar.");
-
+            Console.WriteLine("(klicka valfri knapp...)");
+            Console.ReadKey();
             return hp;
         }
 

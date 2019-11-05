@@ -12,16 +12,22 @@ namespace Novemberprojektet
         {
             //Novembet projekt, GameState och fightersim
 
-            Player p1 = new Player();
+            Player p = new Player();
+            p.SetPlayer();
+            p.SetStats();
+
+            Fight(p);
+
+            Console.ReadLine();
+        }
+
+        static void Fight(Player p1)
+        {
             Enemy e1 = new Enemy();
-
-            p1.SetPlayer();
-            p1.SetStats();
-
             e1.SetEnemy();
             e1.SetStats();
 
-            bool p1State = p1.isAlive();          
+            bool p1State = p1.isAlive();
             bool e1State = e1.isAlive();
 
             while (p1State == true && e1State == true)
@@ -39,7 +45,7 @@ namespace Novemberprojektet
                 p1State = p1.isAlive();
             }
 
-            if(p1State == false && e1State == true)
+            if (p1State == false && e1State == true)
             {
                 Console.WriteLine("Du dog!");
             }
@@ -47,9 +53,7 @@ namespace Novemberprojektet
             {
                 Console.WriteLine(p1.name + " vann!");
             }
-
-            Console.ReadKey(); 
-
+            Console.ReadKey();
         }
     }
 }
