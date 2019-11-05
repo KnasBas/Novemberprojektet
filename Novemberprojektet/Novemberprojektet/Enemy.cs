@@ -9,19 +9,22 @@ namespace Novemberprojektet
     class Enemy : Fighting
     {
         static Random enemygenerator = new Random();
+
+        public override void SetStats()
+        {
+            base.SetStats();
+            hp = enemygenerator.Next(55, 80);
+        }
         public void SetEnemy()
         {
-            List<string> enemies = new List<string> {"Demon", "Skeleton", "Zombie" };
-
-            name = enemies[enemygenerator.Next(3)];
-
+            List<string> enemies = new List<string> {"Lesser Demon", "Skeletal Wyvern", "Zombie", "Ghast", "Giant Snake", "Giant Spider", "Vet'ion" };
+            name = enemies[enemygenerator.Next(7)];
             Console.WriteLine("Denna match kommer du möta " + name + " som din motståndare");
         }
 
         public override int GetStance()
         {
             int amount = enemygenerator.Next(1,3);
-
             if (amount == 1)
             {
                 Console.WriteLine("Enemy {Offensiv}");
@@ -32,7 +35,6 @@ namespace Novemberprojektet
                 Console.WriteLine("Enemy {Deffensiv}");
                 stance = 2;
             }
-
             return stance;
         }
     }

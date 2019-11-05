@@ -18,11 +18,11 @@ namespace Novemberprojektet
 
         protected bool PlayerState = true;
         
-        public void SetStats()
+        public virtual void SetStats()
         {
             Random generator = new Random();
 
-            hp = generator.Next(150, 200);
+            hp = generator.Next(80, 100);
 
             weapon = generator.Next(3); // 1/3 chans, om generatorn rullar 2 så kommer spelaren göra mer damage
         }
@@ -38,6 +38,7 @@ namespace Novemberprojektet
             while (!checkAnswer || stance != 1 && stance != 2)
             {
                 Console.WriteLine("Försök igen (1 eller 2)");
+                Console.Write("Ditt val: ");
                 answer = Console.ReadLine();
                 checkAnswer = int.TryParse(answer, out stance);
             }
@@ -61,15 +62,21 @@ namespace Novemberprojektet
 
             if (stance == 1 && weapon == 2) //Offensiv
             {
-                damage = generator.Next(10, 20); //5 - 15
+                damage = generator.Next(10, 21); //10 - 19
+                Console.WriteLine("{Extra weapon dmg}");
             }
             else if (stance == 1 && weapon != 2)
             {
-                damage = generator.Next(5, 15); //5 - 15
+                damage = generator.Next(5, 16); //5 - 15
             }
-            else if (stance == 2) //Defensiv
+            else if (stance == 2 && weapon == 2)//Defensiv
             {
-                damage = generator.Next(1, 9); //1 - 9
+                damage = generator.Next(6, 13); //Deffensiv mer dmg 6 - 12
+                Console.WriteLine("{Extra weapon dmg}");
+            }
+            else if (stance == 2 && weapon != 2) 
+            {
+                damage = generator.Next(1, 9); //1 - 8
             }
 
             Console.WriteLine(name + " gör skada för " + damage);
