@@ -11,54 +11,83 @@ namespace Novemberprojektet
         static void Main(string[] args)
         {
             //Novembet projekt, GameState och fightersim
+            int victories = 0;
             int pointOfCompass;
             List<string> pointOfCompassName = new List<string> { "Norr", "Väst", "Öst", "Syd" };
-            //Player p = new Player();
-            //p.SetPlayer();
-            //p.SetStats();
-            //Fight(p);
+            Player p1 = new Player();
+            p1.SetPlayer();
+            p1.SetStats();
 
-            Console.WriteLine("Vilket vädersträck vill du gå?");
-            Console.WriteLine("Norr (1), Väst (2), Öst (3), Syd (4)");
-            Console.Write("Ditt val: ");
-
-            string answer = Console.ReadLine();
-            bool resultDirection = int.TryParse(answer, out pointOfCompass);
-            while (!resultDirection || pointOfCompass < 1 && pointOfCompass >= 5)
+            while (victories <= 3 && p1.isAlive())
             {
-                Console.WriteLine("Ogiltigt alternativ, försök igen");
-                Console.WriteLine("(1, 2, 3 ,4)");
-                Console.WriteLine("Ditt val: ");
-                answer = Console.ReadLine();
-                resultDirection = int.TryParse(answer, out pointOfCompass);
+                Console.WriteLine("Vilket vädersträck vill du gå?");
+                Console.WriteLine("Norr (1), Väst (2), Öst (3), Syd (4)");
+                Console.Write("Ditt val: ");
+
+                pointOfCompass = GetDirection();
+
+                Console.WriteLine("Du valde att gå " + pointOfCompassName[pointOfCompass - 1]);
+
+                switch (pointOfCompass)
+                {
+                    case 1:
+                        victories = triggerInstance(p1, victories);
+                        break;
+
+                    case 2:
+                        victories = triggerInstance(p1, victories);
+                        break;
+
+                    case 3:
+                        victories = triggerInstance(p1, victories);
+                        break;
+
+                    case 4:
+                        victories = triggerInstance(p1, victories);
+                        break;
+                }
+                Console.ReadLine();
             }
 
-            int i = pointOfCompass;
-
-            Console.WriteLine("Du valde att gå " + pointOfCompassName[i-1]);
-
-            switch(pointOfCompass)
+            if (!p1.isAlive()) 
+            { 
+                Console.WriteLine("Du förlorade spelet!"); 
+            }
+            else
             {
-                case 1:
-
-                    break;
-
-                case 2:
-
-                    break;
-
-                case 3:
-
-                    break;
-
-                case 4:
-
-                    break;
-            }           
+                Console.WriteLine("Grattis du överlevde fyra strider!");
+            }
             Console.ReadLine();
         }
+            
+        static int GetDirection()
+        {
+            string answer = Console.ReadLine();
+            bool resultDirection = int.TryParse(answer, out int i);
+            while (!resultDirection || i < 1 || i >= 5)
+            {
+                Console.WriteLine("Ogiltigt alternativ, försök igen");
+                Console.WriteLine("Norr (1), Väst (2), Öst (3), Syd (4)");
+                Console.WriteLine("Ditt val: ");
+                answer = Console.ReadLine();
+                resultDirection = int.TryParse(answer, out i);
+            }
 
-        static void Fight(Player p1)
+            return i;
+        }
+
+        static int triggerInstance(Player p1, int victories)
+        {
+            Random gen = new Random();
+            int instance = gen.Next(3); //0,1,2
+            if (instance == 2)
+            {
+                victories = Fight(p1, victories);
+            }
+            return victories;
+        }
+
+        static int Fight(Player p1, int victories)
         {
             Enemy e1 = new Enemy();
             e1.SetEnemy();
@@ -84,8 +113,10 @@ namespace Novemberprojektet
             else
             {
                 Console.WriteLine(p1.name + " vann!");
+                victories = victories + 1;
             }
             Console.ReadKey();
+            return victories;
         }
     }
 }

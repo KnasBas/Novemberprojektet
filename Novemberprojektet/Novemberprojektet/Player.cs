@@ -8,6 +8,14 @@ namespace Novemberprojektet
 {
     class Player : Fighting
     {
+        private Random gen = new Random();
+        public override void SetStats()
+        {
+            base.SetStats();
+
+            hp = gen.Next(200, 1000);
+            weapon = 2;
+        }
         public void SetPlayer()
         {
             Console.Write("Välj din spelares namn: ");
