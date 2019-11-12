@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Novemberprojektet
 {
-    class Fighting
+    class Fighting : Items
     {
         public string name = "";
 
         protected int stance = 0;
-
-        protected float hp = 0;
 
         protected int weapon = 0;
 
@@ -28,28 +26,51 @@ namespace Novemberprojektet
         }
         public virtual int GetStance()
         {
-            Console.WriteLine("Välj stance Offensiv (1) eller Deffensiv (2)");
-            Console.Write("Ditt val: ");
-
-            string answer = Console.ReadLine();
-
-            bool checkAnswer = int.TryParse(answer, out stance);
-
-            while (!checkAnswer || stance != 1 && stance != 2)
+            if (healthpotions >= 1)
             {
-                Console.WriteLine("Försök igen (1 eller 2)");
+                Console.WriteLine("Välj stance Offensiv (1), Deffensiv (2) eller Heal (3)");
                 Console.Write("Ditt val: ");
-                answer = Console.ReadLine();
-                checkAnswer = int.TryParse(answer, out stance);
-            }
 
+                string answer = Console.ReadLine();
+
+                bool checkAnswer = int.TryParse(answer, out stance);
+
+                while (!checkAnswer || stance >= 4 && stance < 1)
+                {
+                    Console.WriteLine("Försök igen ( (1), (2) eller (3) )");
+                    Console.Write("Ditt val: ");
+                    answer = Console.ReadLine();
+                    checkAnswer = int.TryParse(answer, out stance);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Välj stance Offensiv (1), Deffensiv (2)");
+                Console.Write("Ditt val: ");
+
+                string answer = Console.ReadLine();
+
+                bool checkAnswer = int.TryParse(answer, out stance);
+
+                while (!checkAnswer || stance >= 4 && stance < 1)
+                {
+                    Console.WriteLine("Försök igen ( (1), (2) eller (3) )");
+                    Console.Write("Ditt val: ");
+                    answer = Console.ReadLine();
+                    checkAnswer = int.TryParse(answer, out stance);
+                }
+            }                      
             if (stance == 1)
             {
                 Console.WriteLine("{Offensiv}");
             }
-            else
+            else if (stance == 2)
             {
                 Console.WriteLine("{Deffensiv}");
+            }
+            else
+            {
+                Console.WriteLine("{Heal}");
             }
             return stance;
         }
@@ -64,6 +85,7 @@ namespace Novemberprojektet
             {
                 damage = generator.Next(10, 21); //10 - 19
                 Console.WriteLine("{Extra weapon dmg}");
+                
             }
             else if (stance == 1 && weapon != 2)
             {
@@ -78,9 +100,12 @@ namespace Novemberprojektet
             {
                 damage = generator.Next(1, 9); //1 - 8
             }
-
+            else
+            {
+                Console.WriteLine("Du valde att läka dig under rundan.");
+            }
             Console.WriteLine(name + " gör skada för " + damage);
-          
+
             return damage;
         }
 
