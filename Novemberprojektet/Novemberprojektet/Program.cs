@@ -175,8 +175,8 @@ namespace Novemberprojektet
             else
             {
                 Console.WriteLine(p1.name + " vann!");
-                victories = victories + 1;
-                i1.IncreaseGoldpieces();
+                i1.IncreaseGoldpieces(10);
+                victories = victories + 1;          
             }
             Console.ReadKey();
             return victories;

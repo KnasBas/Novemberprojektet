@@ -10,9 +10,13 @@ namespace Novemberprojektet
     {
         public string name = "";
 
+        protected int xp = 0;
+
         protected int stance = 0;
 
         protected int weapon = 0;
+
+        protected int gear = 0;
 
         protected bool PlayerState = true;
         
@@ -43,7 +47,7 @@ namespace Novemberprojektet
                     checkAnswer = int.TryParse(answer, out stance);
                 }
             }
-            else
+            else if(healthpotions == 0)
             {
                 Console.WriteLine("Välj stance Offensiv (1), Deffensiv (2)");
                 Console.Write("Ditt val: ");
@@ -52,9 +56,9 @@ namespace Novemberprojektet
 
                 bool checkAnswer = int.TryParse(answer, out stance);
 
-                while (!checkAnswer || stance >= 4 && stance < 1)
+                while (!checkAnswer || stance != 1 && stance != 2)
                 {
-                    Console.WriteLine("Försök igen ( (1), (2) eller (3) )");
+                    Console.WriteLine("Försök igen ( (1) eller (2) )");
                     Console.Write("Ditt val: ");
                     answer = Console.ReadLine();
                     checkAnswer = int.TryParse(answer, out stance);
@@ -75,7 +79,7 @@ namespace Novemberprojektet
             return stance;
         }
 
-        public int Attack()
+        public virtual int Attack()
         {
             Random generator = new Random();
 
@@ -104,7 +108,6 @@ namespace Novemberprojektet
             {
                 Console.WriteLine("Du valde att läka dig under rundan.");
             }
-            Console.WriteLine(name + " gör skada för " + damage);
 
             return damage;
         }

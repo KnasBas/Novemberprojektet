@@ -8,7 +8,7 @@ namespace Novemberprojektet
 {
     class Items
     {
-        private int goldpieces = 100;
+        protected int goldpieces = 100;
         protected int healthpotions = 0;
         protected float hp = 0;
 
@@ -22,9 +22,10 @@ namespace Novemberprojektet
             }      
             return healthpotions;
         }
-        public int IncreaseGoldpieces()
+        public int IncreaseGoldpieces(int value)
         {
-            return goldpieces + 10;
+            goldpieces = goldpieces + value;
+            return goldpieces;
         }
 
         public int GetGoldPieces()

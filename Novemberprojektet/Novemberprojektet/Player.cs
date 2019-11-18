@@ -12,9 +12,19 @@ namespace Novemberprojektet
         public override void SetStats()
         {
             base.SetStats();
-
             hp = gen.Next(200, 1000);
-            weapon = 2;
+            weapon = gen.Next(3);
+        }
+
+        public override int Attack()
+        {
+            int damage = base.Attack();
+            if (xp >= 3)
+            {
+                damage = damage + xp;
+            }
+            Console.WriteLine(name + " gör skada för " + damage);
+            return damage;
         }
         public void SetPlayer()
         {
@@ -22,6 +32,5 @@ namespace Novemberprojektet
             name = Console.ReadLine();
             Console.WriteLine("Du namngav din spelare till " + name);
         }
-
     }
 }
