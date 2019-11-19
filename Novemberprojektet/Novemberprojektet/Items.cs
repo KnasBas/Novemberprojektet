@@ -8,7 +8,7 @@ namespace Novemberprojektet
 {
     class Items
     {
-        protected int goldpieces = 100;
+        protected int goldpieces = 0;
         protected int healthpotions = 0;
         protected float hp = 0;
 

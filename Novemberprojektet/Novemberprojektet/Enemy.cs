@@ -9,11 +9,14 @@ namespace Novemberprojektet
     class Enemy : Fighting
     {
         static Random enemygenerator = new Random();
+        private int enemyLevel = 0;
+        private int enemyXP = 0;
             
         public Enemy()
         {
-            xp = xp + 1;
-            gear = enemygenerator.Next(3); //1/3 chans          
+            gear = enemygenerator.Next(3); //1/3 chans
+            enemyXP++;
+            enemyLevel = enemyXP;
         }
 
         public override int Attack()
@@ -21,11 +24,11 @@ namespace Novemberprojektet
             int damage = base.Attack();
             if (gear == 2 )
             {
-                damage = damage + 3 + xp / 2;
+                damage = damage + 3 + enemyLevel;
             }
             else
             {
-                damage = damage + xp / 2;
+                damage = damage + enemyLevel;
             }
             Console.WriteLine(name + " gör skada för " + damage);
 
@@ -45,10 +48,12 @@ namespace Novemberprojektet
             {
                 Console.WriteLine("Denna match kommer du möta " + name + " som din motståndare");
                 Console.WriteLine("Du har otur, motståndaren har bättre utrustning än normalt");
+                Console.WriteLine("{lvl: " + enemyLevel + "}");
             }
             else
-            {
+            {                
                 Console.WriteLine("Denna match kommer du möta " + name + " som din motståndare");
+                Console.WriteLine("{lvl: " + enemyLevel + "}");
             }            
         }
 

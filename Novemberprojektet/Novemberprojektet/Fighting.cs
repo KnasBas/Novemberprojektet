@@ -152,5 +152,16 @@ namespace Novemberprojektet
             return PlayerState;
         }
 
+        public int Victory()
+        {
+            xp = 2;
+            return xp;
+        }
+
+        public int GetXp()
+        {
+            return xp;
+        }
+
     }
 }

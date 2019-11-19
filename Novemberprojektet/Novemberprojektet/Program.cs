@@ -146,6 +146,11 @@ namespace Novemberprojektet
             {
                 victories = Fight(p1, i1, victories);
             }
+            else
+            {
+                Console.WriteLine("Du traskar runt i vildmarken ett bra tag men hittar inget.");
+                Console.WriteLine("Fortsätt din resa.");
+            }
             return victories;
         }
 
@@ -174,9 +179,14 @@ namespace Novemberprojektet
             }
             else
             {
+                p1.Victory();
                 Console.WriteLine(p1.name + " vann!");
                 i1.IncreaseGoldpieces(10);
-                victories = victories + 1;          
+                Console.WriteLine("Du har nu " + i1.GetGoldPieces() + " guldmynt");
+                Console.WriteLine("XP: " + p1.GetXp());
+                Console.WriteLine("Total XP: " + p1.GetPlayerXp());
+                Console.WriteLine("Level: " + p1.PlayerLevel());
+                victories = victories + 1;
             }
             Console.ReadKey();
             return victories;
