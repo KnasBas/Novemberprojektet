@@ -9,14 +9,11 @@ namespace Novemberprojektet
     class Enemy : Fighting
     {
         static Random enemygenerator = new Random();
-        private int enemyLevel = 0;
-        private int enemyXP = 0;
+        private int enemyLevel = 1;
             
         public Enemy()
         {
             gear = enemygenerator.Next(3); //1/3 chans
-            enemyXP++;
-            enemyLevel = enemyXP;
         }
 
         public override int Attack()
@@ -35,10 +32,12 @@ namespace Novemberprojektet
             return damage;
         }
 
-        public override void SetStats()
+        public override float SetStats()
         {
             base.SetStats();
-            hp = enemygenerator.Next(55, 80);
+            hp = enemygenerator.Next(55, 80 * enemyLevel);
+
+            return hp;
         }
         public void SetEnemy()
         {
@@ -55,6 +54,13 @@ namespace Novemberprojektet
                 Console.WriteLine("Denna match kommer du möta " + name + " som din motståndare");
                 Console.WriteLine("{lvl: " + enemyLevel + "}");
             }            
+        }
+
+        public int EnemyLevelUp()
+        {
+            enemyLevel = enemyLevel + 1;
+
+            return enemyLevel;
         }
 
         public override int GetStance()

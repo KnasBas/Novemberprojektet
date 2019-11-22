@@ -13,11 +13,13 @@ namespace Novemberprojektet
         private float playerLevel = 1;
 
         private Random gen = new Random();
-        public override void SetStats()
+        public override float SetStats()
         {
             base.SetStats();
             hp = gen.Next(1000, 1000);
             weapon = gen.Next(3);
+
+            return hp;
         }
 
         public float GetPlayerXp()

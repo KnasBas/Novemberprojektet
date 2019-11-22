@@ -13,6 +13,7 @@ namespace Novemberprojektet
             //Novembet projekt, GameState och fightersim
             
             Player p1 = new Player();
+            Enemy e1 = new Enemy();
             Items i1 = new Items();
             p1.SetPlayer();
             p1.SetStats();
@@ -36,19 +37,19 @@ namespace Novemberprojektet
                 switch (whichChoice)
                 {
                     case 1:
-                        victories = triggerInstance(p1,i1,victories);
+                        victories = triggerInstance(p1,i1, e1, victories);
                         break;
 
                     case 2:
-                        victories = triggerInstance(p1, i1, victories);
+                        victories = triggerInstance(p1, i1, e1, victories);
                         break;
 
                     case 3:
-                        victories = triggerInstance(p1, i1, victories);
+                        victories = triggerInstance(p1, i1, e1, victories);
                         break;
 
                     case 4:
-                        victories = triggerInstance(p1, i1, victories);
+                        victories = triggerInstance(p1, i1, e1, victories);
                         break;
                     case 5:
                         Shop(i1);
@@ -138,13 +139,13 @@ namespace Novemberprojektet
                 Console.ReadKey();        
         }
 
-        static int triggerInstance(Player p1, Items i1, int victories)
+        static int triggerInstance(Player p1, Items i1, Enemy e1, int victories)
         {
             Random gen = new Random();
             int instance = gen.Next(3); //0,1,2
             if (instance == 2)
             {
-                victories = Fight(p1, i1, victories);
+                victories = Fight(p1, i1, e1, victories);
             }
             else
             {
@@ -154,11 +155,11 @@ namespace Novemberprojektet
             return victories;
         }
 
-        static int Fight(Player p1, Items i1, int victories)
-        {
-            Enemy e1 = new Enemy();
+        static int Fight(Player p1, Items i1, Enemy e1, int victories)
+        {       
             e1.SetEnemy();
             e1.SetStats();
+            e1.isAlive();
             while (p1.isAlive() && e1.isAlive())
             {
                 i1.UseHealthPotions(p1.GetStance());
@@ -180,6 +181,7 @@ namespace Novemberprojektet
             else
             {
                 p1.Victory();
+                e1.EnemyLevelUp();
                 Console.WriteLine(p1.name + " vann!");
                 i1.IncreaseGoldpieces(10);
                 Console.WriteLine("Du har nu " + i1.GetGoldPieces() + " guldmynt");

@@ -1,0 +1,97 @@
+<Project>
+  <Name>Klass</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Untitled</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Items</Name>
+        <Access>Public</Access>
+        <Location left="224" top="100" />
+        <Size width="162" height="247" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected internal int goldpieces</Member>
+        <Member type="Field">protected internal int healthpotions</Member>
+        <Member type="Field">protected internal int hp</Member>
+        <Member type="Method">public int UseHealthPotions()</Member>
+        <Member type="Method">public int IncreaseGoldpieces()</Member>
+        <Member type="Method">public int GetGoldPieces()</Member>
+        <Member type="Method">public int SpendGoldPieces()</Member>
+        <Member type="Method">public int IncreaseHeatlthPotions()</Member>
+        <Member type="Method">public int GetHealthPotions()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Fighting</Name>
+        <Access>Public</Access>
+        <Location left="479" top="282" />
+        <Size width="162" height="332" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public string name</Member>
+        <Member type="Field">protected internal int xp</Member>
+        <Member type="Field">protected internal int stance</Member>
+        <Member type="Field">protected internal int weapon</Member>
+        <Member type="Field">protected internal int gear</Member>
+        <Member type="Field">protected internal bool PlayerState</Member>
+        <Member type="Method">public void SetStats()</Member>
+        <Member type="Method">public int GetStance()</Member>
+        <Member type="Method">public int Attack()</Member>
+        <Member type="Method">public void Hurt()</Member>
+        <Member type="Method">public float GetHp()</Member>
+        <Member type="Method">public bool isAlive()</Member>
+        <Member type="Method">public int Victory()</Member>
+        <Member type="Method">public int GetXp()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Player</Name>
+        <Access>Public</Access>
+        <Location left="332" top="866" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">float playerXP</Member>
+        <Member type="Field">float playerLevel</Member>
+        <Member type="Field">Random gen</Member>
+        <Member type="Method">public void SetStats()</Member>
+        <Member type="Method">public float GetPlayerXp()</Member>
+        <Member type="Method">public float PlayerLevel()</Member>
+        <Member type="Method">public int Attack()</Member>
+        <Member type="Method">public void SetPlayer()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Enemy</Name>
+        <Access>Public</Access>
+        <Location left="667" top="866" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Random enemygenerator</Member>
+        <Member type="Field">int enemyLevel</Member>
+        <Member type="Field">int enemyXP</Member>
+        <Member type="Method">public int Attack()</Member>
+        <Member type="Method">public void SetStats()</Member>
+        <Member type="Method">public int GetStance()</Member>
+        <Member type="Method">public void SetEnemy()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="1" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="2" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

@@ -20,13 +20,15 @@ namespace Novemberprojektet
 
         protected bool PlayerState = true;
         
-        public virtual void SetStats()
+        public virtual float SetStats()
         {
             Random generator = new Random();
 
             hp = generator.Next(80, 100);
 
             weapon = generator.Next(3); // 1/3 chans, om generatorn rullar 2 så kommer spelaren göra mer damage
+
+            return hp;
         }
         public virtual int GetStance()
         {
