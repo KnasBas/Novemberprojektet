@@ -47,9 +47,11 @@ namespace Novemberprojektet
                     Console.Write("Ditt val: ");
                     answer = Console.ReadLine();
                     checkAnswer = int.TryParse(answer, out stance);
+
+                    //En check ifall det finns healthpotions vilket möjligör ett extra alternativ för spelaren att kunna välja att använda en.
                 }
             }
-            else //En check ifall det finns healthpotions vilket möjligör ett extra alternativ för spelaren att kunna välja att använda en.
+            else
             {
                 Console.WriteLine("Välj stance Offensiv (1), Deffensiv (2) eller Heal (3)");
                 Console.Write("Ditt val: ");

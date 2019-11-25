@@ -8,8 +8,8 @@ namespace Novemberprojektet
 {
     class Items
     {
-        protected int goldpieces = 0;     // 
-        public int healthpotions = 0; // protected int för att de användes i arven.
+        protected int goldpieces = 0;     // protected int för att de användes i arven.
+        protected int healthpotions = 0; // 
         protected float hp = 0;         //
 
         public int UseHealthPotions(int value)
@@ -18,6 +18,7 @@ namespace Novemberprojektet
             {
                 hp = hp + 50; //Ökar hp.
                 healthpotions = healthpotions - 1; //minskar spelarens healthpotions
+                Console.WriteLine("Ditt hp är nu " + hp);
 
             }      
             return healthpotions;

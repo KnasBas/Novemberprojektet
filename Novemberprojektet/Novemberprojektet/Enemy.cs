@@ -38,9 +38,8 @@ namespace Novemberprojektet
             gear = enemygenerator.Next(3); //slump gen 0,1,2 ,,, 1/3 chans
             if (gear == 2) //Tar emot gear variabeln, ifall motsånaderen kommer vara starkare dennna runda.
             {
-                Console.WriteLine("Denna match kommer du möta " + name + " som din motståndare");
+                Console.WriteLine("Denna match kommer du möta " + name + "{lvl: " + enemyLevel + "}" + " som din motståndare");
                 Console.WriteLine("Du har otur, motståndaren har bättre utrustning än normalt");
-                Console.WriteLine("{lvl: " + enemyLevel + "}");
             }
             else
             {                

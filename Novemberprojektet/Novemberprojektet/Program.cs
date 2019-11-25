@@ -11,7 +11,7 @@ namespace Novemberprojektet
         static void Main(string[] args)
         {
             //Novembet projekt, GameState och fightersim
-            //Mekaniker som enemyns leveling system samt health potions systemet är fortfarande work in progress
+            //Mekaniker som enemyns leveling system är fortfarande work in progress
             Items i1 = new Items();
             Fighting f1 = new Fighting();
             Player p1 = new Player();
@@ -56,7 +56,7 @@ namespace Novemberprojektet
                         victories = TriggerInstance(p1, i1, e1, victories, potionCheck);
                         break;
                     case 5:
-                        Shop(i1, potionCheck); //alternativ 5 tar en till shop metoden
+                        Shop(i1, p1, potionCheck); //alternativ 5 tar en till shop metoden
                         break;
                 }
                     Console.ReadLine();
@@ -89,7 +89,7 @@ namespace Novemberprojektet
             return i; //returnerar tillbaka rätt svar
         }
 
-        static int Shop(Items i1, int potionCheck)
+        static int Shop(Items i1, Player p1, int potionCheck)
         {
             Console.WriteLine("Vill du köpa en health potion?");
             Console.WriteLine("Ja(1), Nej(2)");
@@ -107,7 +107,7 @@ namespace Novemberprojektet
             }
             while (i == 1) //om man väljer att gå in shopen
             {
-                Console.WriteLine("Du har för tillfället " + i1.GetGoldPieces() + "st guldmynt."); //i1.GetGoldPieces skirver ut dina pengar
+                Console.WriteLine("Du har för tillfället " + p1.GetGoldPieces() + "st guldmynt."); //i1.GetGoldPieces skirver ut dina pengar
                 Console.WriteLine("En Healthpotion kostar 5 mynt.");
                 Console.ReadKey();
                 Console.WriteLine("Hur många vill du köpa? Eller vill du lämna? (skriv avbryt)");
@@ -119,7 +119,7 @@ namespace Novemberprojektet
                 }
                 int amount = 0;
                 resultChoice = int.TryParse(answer, out amount);
-                int totalGoldpieces = i1.GetGoldPieces();
+                int totalGoldpieces = p1.GetGoldPieces();
                 while(!resultChoice && amount > totalGoldpieces) //ser till att spelaren inte kan köpa healthpotions om man inte har råd
                 {
                     Console.WriteLine("Du har inte råd, du har " + totalGoldpieces + "st mynt.");
@@ -133,10 +133,10 @@ namespace Novemberprojektet
                 }
                 if(resultChoice && amount <= totalGoldpieces) //om man lyckas köpa 
                 {
-                    i1.IncreaseHeatlthPotions(amount); //Metoden från klassen items körs beroende på hur många man köpte
-                    i1.SpendGoldPieces(amount * 5); //minskar dina pengar
-                    Console.WriteLine("Du har nu " + i1.GetHealthPotions() + "st healthpotions");
-                    potionCheck = i1.GetHealthPotions();
+                    p1.IncreaseHeatlthPotions(amount); //Metoden från klassen items körs beroende på hur många man köpte
+                    p1.SpendGoldPieces(amount * 5); //minskar dina pengar
+                    Console.WriteLine("Du har nu " + p1.GetHealthPotions() + "st healthpotions");
+                    potionCheck = p1.GetHealthPotions();
                 }
                 
             }            
@@ -172,8 +172,8 @@ namespace Novemberprojektet
 
             while (p1.isAlive() && e1.isAlive()) // en loop som skapar fighten, körs tills gången dör
             {
-                i1.CheckHealthPotions(potionCheck);
-                i1.UseHealthPotions(p1.GetStance()); //healthpotions metoden är baserad på GetStance eftersom stance metoden kan skicka ett resultat som går vidare till metod, läker spelaren
+                p1.CheckHealthPotions(potionCheck);
+                p1.UseHealthPotions(p1.GetStance()); //healthpotions metoden är baserad på GetStance eftersom stance metoden kan skicka ett resultat som går vidare till metod, läker spelaren
                 float attacks = p1.Attack(); //float attacks tar emot Attack metodens resultat
                 e1.Hurt(attacks); //hurt får sedan resultatet från attack
                 e1.GetHp(); //En check på motståndarens hp
@@ -194,8 +194,8 @@ namespace Novemberprojektet
                 p1.Victory(); 
                 e1.EnemyLevelUp();
                 Console.WriteLine(p1.name + " vann!"); //skriver ut spelarens vinst
-                i1.IncreaseGoldpieces(10);
-                Console.WriteLine("Du har nu " + i1.GetGoldPieces() + " guldmynt");
+                p1.IncreaseGoldpieces(10);
+                Console.WriteLine("Du har nu " + p1.GetGoldPieces() + " guldmynt");
                 Console.WriteLine("XP: " + p1.GetXp());
                 Console.WriteLine("Total XP: " + p1.GetPlayerXp());         //Alla metoder som körs här är kommenterade för vad respektive metod utför
                 Console.WriteLine("Level: " + p1.PlayerLevel());
